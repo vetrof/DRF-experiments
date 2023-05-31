@@ -9,7 +9,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class FoodSerializer(serializers.ModelSerializer):
+class FoodsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
         fields = '__all__'

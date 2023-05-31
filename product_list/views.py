@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 from product_list.models import Food, Category
-from product_list.serializers import CategorySerializer, FoodSerializer
+from product_list.serializers import CategorySerializer, FoodsSerializer
 
 
 def list_product(request):
@@ -18,11 +18,9 @@ class CategoryApiView(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     http_method_names = ['get']
 
-    # def create(self, request, *args, **kwargs):
-    #     # Логика для обработки метода POST
-    #     return super().create(request, *args, **kwargs)
 
-
-class FoodViewSet(viewsets.ModelViewSet):
+class FoodsApi(viewsets.ModelViewSet):
     queryset = Food.objects.all()
-    serializer_class = FoodSerializer
+    serializer_class = FoodsSerializer
+
+
