@@ -5,12 +5,20 @@ from product_list.models import Food, Category
 from product_list.serializers import CategorySerializer, FoodsSerializer
 
 
-def list_product(request):
-    foods = Food.objects.all().order_by('-id')
-    context = {'foods': foods}
+def list_product(request, category=None):
 
+    if category is None:
+        foods = Food.objects.all().order_by('-id')
+        context = {'foods': foods}
+
+    else:
+        foods = Food.objects.filter(cat=category)
+        context = {'foods': foods}
+
+    cat = Category.objects.all()
+
+    context['cat'] = cat
     return render(request, 'product_list/index.html', context)
-
 
 # ---------------- api ----------------------
 class CategoryApiView(viewsets.ModelViewSet):
@@ -22,5 +30,3 @@ class CategoryApiView(viewsets.ModelViewSet):
 class FoodsApi(viewsets.ModelViewSet):
     queryset = Food.objects.all()
     serializer_class = FoodsSerializer
-
-
