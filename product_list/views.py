@@ -6,7 +6,6 @@ from product_list.serializers import CategorySerializer, FoodsSerializer
 
 
 def list_product(request, category=None):
-
     if category is None:
         foods = Food.objects.all().order_by('-id')
         context = {'foods': foods}
@@ -19,6 +18,7 @@ def list_product(request, category=None):
 
     context['cat'] = cat
     return render(request, 'product_list/index.html', context)
+
 
 # ---------------- api ----------------------
 class CategoryApiView(viewsets.ModelViewSet):
